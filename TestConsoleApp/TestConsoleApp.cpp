@@ -5,24 +5,24 @@
 int main()
 {
 	setlocale(LC_ALL, "Russian");
-	std::cout << "×òîáû âûéòè, íàáåðèòå 'q'\nÂâåäèòå çàïðîñ:";
+	std::cout << "Ð§Ñ‚Ð¾Ð±Ñ‹ Ð²Ñ‹Ð¹Ñ‚Ð¸, Ð½Ð°Ð±ÐµÑ€Ð¸Ñ‚Ðµ 'q'\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð·Ð°Ð¿Ñ€Ð¾Ñ:";
 	smatch matchedStrings;
-	regex parseRule("^[ ]*test[ ]+(-f[ ]+([^ ]+)[ ]+-m[ ]+(words[ ]+-v[ ]+([^ ]+)|checksum)|-h)$");//ïðàâèëî äëÿ ïðîâåðêè êîìàíäû íà ïðàâèëüíîñòü è îáðàáîòêó èíôîðìàöèè
+	regex parseRule("^[ ]*test[ ]+(-f[ ]+([^ ]+)[ ]+-m[ ]+(words[ ]+-v[ ]+([^ ]+)|checksum)|-h)$");//Ð¿Ñ€Ð°Ð²Ð¸Ð»Ð¾ Ð´Ð»Ñ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ¸ ÐºÐ¾Ð¼Ð°Ð½Ð´Ñ‹ Ð½Ð° Ð¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ð¾ÑÑ‚ÑŒ Ð¸ Ð¾Ð±Ñ€Ð°Ð±Ð¾Ñ‚ÐºÑƒ Ð¸Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸Ð¸
 	std::string input;
 
 	do {
 		getline(cin, input);
-		if (!regex_match(input, matchedStrings, parseRule))//åñëè çàïðîñ áûë ââåäåí íåâåðíî
-			std::cout << "Íåâåðíûé çàïðîñ" << endl;
+		if (!regex_match(input, matchedStrings, parseRule))//ÐµÑÐ»Ð¸ Ð·Ð°Ð¿Ñ€Ð¾Ñ Ð±Ñ‹Ð» Ð²Ð²ÐµÐ´ÐµÐ½ Ð½ÐµÐ²ÐµÑ€Ð½Ð¾
+			std::cout << "ÐÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ Ð·Ð°Ð¿Ñ€Ð¾Ñ" << endl;
 		else {
-			//óñëîâèÿ äëÿ ïðîâåðêè âûáðàííîãî ðåæèìà
+			//ÑƒÑÐ»Ð¾Ð²Ð¸Ñ Ð´Ð»Ñ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ¸ Ð²Ñ‹Ð±Ñ€Ð°Ð½Ð½Ð¾Ð³Ð¾ Ñ€ÐµÐ¶Ð¸Ð¼Ð°
 			if (matchedStrings[4] != "")
-				std::cout << "×èñëî íàéäåííûõ ñëîâ â ôàéëå:" << command::substrFind(matchedStrings[2].str(), matchedStrings[4].str()) << endl;
+				std::cout << "Ð§Ð¸ÑÐ»Ð¾ Ð½Ð°Ð¹Ð´ÐµÐ½Ð½Ñ‹Ñ… ÑÐ»Ð¾Ð² Ð² Ñ„Ð°Ð¹Ð»Ðµ:" << command::substrFind(matchedStrings[2].str(), matchedStrings[4].str()) << endl;
 			else {
 				if (matchedStrings[3] == "")
 					command::help();
 				else
-					std::cout << "×åêñóììà ôàéëà:" << command::checkSum(matchedStrings[2].str()) << endl;
+					std::cout << "Ð§ÐµÐºÑÑƒÐ¼Ð¼Ð° Ñ„Ð°Ð¹Ð»Ð°:" << command::checkSum(matchedStrings[2].str()) << endl;
 			}
 
 		}
